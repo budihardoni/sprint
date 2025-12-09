@@ -48,27 +48,33 @@
             font-weight: 700;
         }
 
-        .section-divider {
-            height: 1px;
-            background: #e0e0e0;
-            margin: 25px 0;
+        .section-title {
+            margin: 30px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e8eaed;
+            font-size: 13px;
+            font-weight: 700;
+            color: #5f6368;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
         }
 
-        .form-group { margin-bottom: 20px; }
+        .form-group { margin-bottom: 22px; }
         
         .form-group label {
             display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-weight: 700;
+            margin-bottom: 4px;
             font-size: 14px;
+            color: #202124;
         }
 
         .helper-text {
             display: block;
-            font-size: 11px;
+            font-size: 12px;
             color: #5f6368;
-            margin-bottom: 6px;
-            font-style: italic;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
 
         .optional-badge {
@@ -83,7 +89,6 @@
             font-weight: 700;
         }
 
-        /* Input & Select Styling */
         input[type="text"], select {
             width: 100%;
             padding: 10px 12px;
@@ -102,7 +107,6 @@
             box-shadow: 0 0 0 3px rgba(26,115,232,0.1);
         }
 
-        /* Multi-select styling */
         select[multiple] {
             height: auto;
             min-height: 140px;
@@ -145,7 +149,7 @@
             background: #ffffff;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 50px; /* Lebar padding seperti kertas */
+            padding: 50px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             margin-bottom: 20px;
             min-height: 600px;
@@ -209,7 +213,8 @@
             <!-- 1. TOPIC -->
             <div class="form-group">
                 <label>1. Topic</label>
-                <input type="text" id="topic" placeholder="e.g. Morning Routine (The 5AM biological weapon)">
+                <span class="helper-text">Format: [Subject] + [Unique Angle] (e.g., "Morning routine" → "The biological weapon hidden in 5 AM")</span>
+                <input type="text" id="topic" placeholder="Enter topic...">
             </div>
 
             <!-- 2. DURASI -->
@@ -243,6 +248,7 @@
             <!-- 4. TARGET AUDIENCE -->
             <div class="form-group">
                 <label>4. Target Audience</label>
+                <span class="helper-text">Psychographic, not demographic (e.g., "People stuck despite working hard")</span>
                 <select id="audiencePreset">
                     <option value="">-- Pilih Preset atau Ketik Manual --</option>
                     <option value="Orang yang merasa stuck meski sudah kerja keras">Orang stuck meski kerja keras</option>
@@ -311,23 +317,38 @@
             <div class="form-group">
                 <label>7. Story Formula</label>
                 <select id="storyFormula">
-                    <option value="WOW–HOW–NOW">WOW–HOW–NOW (Viral hook)</option>
-                    <option value="Before–After–Why">Before–After–Why (Transformation)</option>
-                    <option value="Problem–Action–Result">Problem–Action–Result (Classic)</option>
-                    <option value="Challenge–Journey–Reward">Challenge–Journey–Reward (Hero's)</option>
-                    <option value="Myth–Fact–Lesson">Myth–Fact–Lesson (Debunk)</option>
-                    <option value="Data–Story–Emotion">Data–Story–Emotion (Documentary)</option>
-                    <option value="Mystery–Clue–Truth">Mystery–Clue–Truth (Reveal)</option>
-                    <option value="Question–Chase–Answer">Question–Chase–Answer (Curiosity)</option>
-                    <option value="Contrast–Pain–Change">Contrast–Pain–Change (Impact)</option>
-                    <option value="Twist–Reveal–Reflect">Twist–Reveal–Reflect (Surprise)</option>
-                    <option value="Top-X Curiosity Loop">Top-X Curiosity Loop (List)</option>
-                    <option value="Versus/Debate">Versus/Debate (A vs B)</option>
-                    <option value="POV/Confessional">POV/Confessional (Personal)</option>
+                    <optgroup label="Standard & Viral">
+                        <option value="WOW–HOW–NOW">WOW–HOW–NOW (Viral hook)</option>
+                        <option value="Before–After–Why">Before–After–Why (Transformation)</option>
+                        <option value="Problem–Action–Result">Problem–Action–Result (Classic)</option>
+                        <option value="Myth–Fact–Lesson">Myth–Fact–Lesson (Debunk)</option>
+                        <option value="Hook–Proof–Promise">Hook–Proof–Promise (High Conversion)</option>
+                        <option value="Top-X Curiosity Loop">Top-X Curiosity Loop (Listicle)</option>
+                    </optgroup>
+                    
+                    <optgroup label="Narrative & Emotional">
+                        <option value="RANT / OPINION">RANT / OPINION (Raw Opinion → Reason → Ask)</option>
+                        <option value="Twist–Reveal–Reflect">Twist–Reveal–Reflect (Surprise Ending)</option>
+                        <option value="Fact–Emotion–Hope">Fact–Emotion–Hope (Non-Profit/Charity)</option>
+                        <option value="Vision–Obstacle–Breakthrough">Vision–Obstacle–Breakthrough (Founder Story)</option>
+                        <option value="Fear–Avoid–Achieve">Fear–Avoid–Achieve (Problem Solving)</option>
+                        <option value="Contrast–Pain–Change">Contrast–Pain–Change (Visual Impact)</option>
+                        <option value="OneName–OneIdea–OneChange">OneName–OneIdea–OneChange (Biography/Profile)</option>
+                    </optgroup>
+
+                    <optgroup label="Deep & Mystery">
+                        <option value="Mystery–Clue–Truth">Mystery–Clue–Truth (Detective Style)</option>
+                        <option value="Question–Chase–Answer">Question–Chase–Answer (Curiosity Journey)</option>
+                        <option value="Chaos–Order–Purpose">Chaos–Order–Purpose (Philosophy/History)</option>
+                        <option value="Pattern–Break–Impact">Pattern–Break–Impact (Analysis/Review)</option>
+                        <option value="TinyDetail–BigTruth–Curiosity">TinyDetail–BigTruth–Curiosity (Video Essay)</option>
+                        <option value="HiddenOrigin–ModernImpact–HumanMeaning">HiddenOrigin–Impact–Meaning (History/Lore)</option>
+                    </optgroup>
                 </select>
             </div>
 
-            <div class="section-divider"></div>
+            <!-- OPTIONAL PARAMETERS HEADER -->
+            <div class="section-title">OPTIONAL PARAMETERS</div>
 
             <!-- 8. EMOTIONAL ARC -->
             <div class="form-group">
@@ -375,7 +396,7 @@
         <!-- OUTPUT SECTION -->
         <div class="output-section">
             <div class="output-paper" id="outputContent">
-                <!-- Content will be injected here via JS -->
+                <!-- Content injected via JS -->
             </div>
             
             <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">
@@ -385,36 +406,46 @@
     </div>
 
     <script>
-        // --- SMART LOGIC MAPS (Dikembalikan) ---
+        // --- SMART LOGIC MAPS (UPDATED WITH NEW FORMULAS) ---
         const arcDefaults = {
+            // Original
             'WOW–HOW–NOW': 'INSIGHT',
             'Before–After–Why': 'TRANSFORMATION',
             'Problem–Action–Result': '3-ACT',
-            'Challenge–Journey–Reward': 'COURAGE',
             'Myth–Fact–Lesson': 'INSIGHT',
-            'Data–Story–Emotion': 'TRAGEDY/EMPATHY',
-            'Mystery–Clue–Truth': 'CURIOSITY LOOP',
-            'Question–Chase–Answer': 'CURIOSITY LOOP',
-            'Contrast–Pain–Change': 'TRANSFORMATION',
-            'Twist–Reveal–Reflect': 'MYSTERY ARC',
             'Top-X Curiosity Loop': 'CURIOSITY LOOP',
-            'Versus/Debate': '3-ACT',
-            'POV/Confessional': 'CONNECTION'
+            
+            // New & Updated
+            'RANT / OPINION': 'COURAGE', // Standing for an opinion often fits Courage or Connection
+            'Twist–Reveal–Reflect': 'MYSTERY ARC',
+            'Question–Chase–Answer': 'CURIOSITY LOOP',
+            'Mystery–Clue–Truth': 'MYSTERY ARC',
+            'Hook–Proof–Promise': 'INSIGHT',
+            'Fact–Emotion–Hope': 'TRAGEDY/EMPATHY',
+            'Contrast–Pain–Change': 'TRANSFORMATION',
+            'Vision–Obstacle–Breakthrough': 'COURAGE',
+            'Chaos–Order–Purpose': 'INSIGHT',
+            'Fear–Avoid–Achieve': 'COURAGE',
+            'Pattern–Break–Impact': 'ABSURDITY', // or Insight
+            'OneName–OneIdea–OneChange': 'LEGACY',
+            'TinyDetail–BigTruth–Curiosity': 'CURIOSITY LOOP',
+            'HiddenOrigin–ModernImpact–HumanMeaning': 'LEGACY'
         };
 
         function getAutoRetention(durationVal, formulaVal) {
-            // Formula overrides
-            if (formulaVal.includes('Mystery') || formulaVal.includes('Twist')) return 'Curiosity Cliffhanger';
-            if (formulaVal.includes('Myth') || formulaVal.includes('Data')) return 'Reward Forecasting';
-            if (formulaVal.includes('Versus')) return 'Hard CTA Minimal Outro';
-
-            // Duration buckets
+            // 1. Formula Overrides (Priority)
+            if (formulaVal === 'RANT / OPINION') return 'Hard CTA Minimal Outro'; // Usually asks for comments
+            if (formulaVal.includes('Mystery') || formulaVal.includes('Twist') || formulaVal.includes('TinyDetail')) return 'Curiosity Cliffhanger';
+            if (formulaVal.includes('Myth') || formulaVal.includes('Proof') || formulaVal.includes('Vision')) return 'Reward Forecasting';
+            if (formulaVal.includes('Fact–Emotion') || formulaVal.includes('OneName')) return 'Emotional Payoff Cascade';
+            
+            // 2. Duration Buckets (Fallback)
             if (['15s', '30s'].includes(durationVal)) return 'Click-Feedback + Pattern Interrupt';
             if (['1m', '90s'].includes(durationVal)) return 'Curiosity Loop + Sequential Reveal';
             if (['3m', '5m'].includes(durationVal)) return 'Sequential Reveal + Promise Breadcrumbs';
             if (['8m', '10m', '15m+'].includes(durationVal)) return 'Emotional Payoff Cascade + End-Loaded';
 
-            return 'Curiosity Loop'; // Fallback
+            return 'Curiosity Loop'; // Generic Fallback
         }
 
         // --- DOM Elements ---
