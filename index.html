@@ -32,7 +32,7 @@
         .container { display: flex; height: 100vh; width: 100%; }
 
         .input-section {
-            width: 480px;
+            width: 500px;
             min-width: 350px;
             padding: 32px;
             overflow-y: auto;
@@ -68,7 +68,7 @@
         
         .form-group { margin-bottom: 20px; }
         label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 8px; color: #202124; }
-        .helper { font-size: 11px; color: #666; margin-bottom: 6px; display: block; line-height: 1.4; }
+        .helper { font-size: 11px; color: #666; margin-bottom: 6px; display: block; line-height: 1.4; font-style: italic; }
         
         input[type="text"], select, textarea {
             width: 100%; padding: 12px 16px; 
@@ -90,19 +90,6 @@
             background-size: 10px auto;
         }
 
-        input:focus, select:focus, textarea:focus { 
-            outline: none; 
-            border-color: var(--primary-color); 
-            box-shadow: 0 0 0 4px rgba(26,115,232,0.1); 
-        }
-        
-        .custom-input { margin-top: 10px; display: block; background: #fff; border-left: 1px solid var(--border-color) !important; }
-
-        .file-wrapper { display: flex; align-items: center; gap: 8px; width: 100%; }
-        input[type="file"] { font-size: 12px; padding: 8px; background: #f8f9fa; border: 1px dashed var(--border-color); border-radius: var(--radius-input); flex: 1; }
-        .clear-btn { background: transparent; border: none; color: #202124; font-weight: 700; font-size: 16px; cursor: pointer; display: none; align-items: center; justify-content: center; padding: 0 8px; transition: 0.2s; }
-        .clear-btn.visible { display: flex; }
-
         .view-toggle { display: flex; background: #e8eaed; padding: 4px; border-radius: var(--radius-btn); margin-bottom: 15px; width: fit-content; margin-left: auto; }
         .view-btn { padding: 8px 20px; border: none; background: transparent; font-size: 12px; font-weight: 700; cursor: pointer; border-radius: var(--radius-btn); color: #5f6368; transition: 0.2s; }
         .view-btn.active { background: #fff; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
@@ -112,20 +99,17 @@
         .brief-item { display: flex; border-bottom: 1px solid #f1f3f4; padding: 12px 0; align-items: flex-start; justify-content: flex-start; }
         .brief-key { font-weight: 700; width: 180px; color: #444; flex-shrink: 0; padding-right: 10px; line-height: 1.5; }
         .brief-val { color: #202124; font-weight: 500; flex: 1; text-align: left !important; white-space: pre-wrap; line-height: 1.5; }
-        .detail-block { display: block; margin-top: 4px; color: #5f6368; font-size: 13px; line-height: 1.5; text-align: left !important; }
 
-        .prompt-content { background: var(--code-bg); color: var(--code-text); font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 25px; white-space: pre-wrap; line-height: 1.5; height: 100%; overflow-y: auto; display: none; }
+        .prompt-content { background: var(--code-bg); color: var(--code-text); font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 25px; white-space: pre-wrap; line-height: 1.8; height: 100%; overflow-y: auto; display: none; }
+        
         .action-bar { margin-top: 15px; display: flex; justify-content: flex-start; }
         .btn { padding: 12px 28px; border: none; border-radius: var(--radius-btn); font-weight: 600; cursor: pointer; font-size: 13px; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
         .btn-primary { background: #202124; color: #fff; } 
-        .btn-primary:hover { background: #3c4043; transform: translateY(-1px); }
-        .btn.copied { background: #1a73e8 !important; color: #fff; }
 
-        /* Custom Checkbox/Radio Styles */
-        .option-group { margin-top: 12px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
-        .option-label { font-size: 12px; font-weight: 700; color: #5f6368; margin-bottom: 8px; display: block; }
-        .check-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; color: #3c4043; }
-        .check-item input { width: auto; margin: 0; cursor: pointer; }
+        .option-group { margin-top: 10px; padding: 12px; background: #f8f9fa; border-radius: 8px; border: 1px solid #eee; }
+        .check-row { display: flex; gap: 20px; align-items: center; }
+        .check-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #3c4043; cursor: pointer; }
+        .check-item input { width: 16px; height: 16px; margin: 0; cursor: pointer; }
 
         @media (max-width: 800px) {
             .container { flex-direction: column; }
@@ -136,260 +120,167 @@
 </head>
 <body>
     <div class="container">
-        <!-- LEFT INPUT -->
         <div class="input-section" id="leftPane">
-            <h2>📝 Campaign Brief</h2>
+            <h2>📝 Setup iklan</h2>
 
             <div class="section-title" style="margin-top:0">A. Brand & Campaign Context</div>
             <div class="form-group">
-                <label>1. Brand Name</label>
+                <label>1. Nama brand</label>
                 <input type="text" id="brandName" placeholder="Contoh: Makaroni Ngehe, Maternal, atau Brand Kamu...">
             </div>
 
             <div class="form-group">
-                <label>2. Industry Category</label>
-                <select id="industry">
-                    <option value="">-- Select Industry --</option>
-                    <optgroup label="Food, Beverage & Lifestyle">
-                        <option value="Snack / Packaged Food">Snack / Packaged Food: Cemilan, makanan ringan, produk kemasan.</option>
-                        <option value="Beverage / Drink">Beverage / Drink: Minuman kemasan, kopi botolan, teh, minuman kekinian.</option>
-                        <option value="Dine-in / Restaurant">Dine-in / Restaurant: Rumah makan, warung, restoran, kafe makan.</option>
-                        <option value="Coffee & Café (F&B Lifestyle)">Coffee & Café (F&B Lifestyle): Coffee shop, brand kopi, lifestyle F&B berbasis pengalaman.</option>
-                    </optgroup>
-                    <optgroup label="Consumer Goods & Personal Care">
-                        <option value="Household Products">Household Products: Sabun, deterjen, pembersih, tisu, kebutuhan rumah tangga.</option>
-                        <option value="Beauty & Skincare">Beauty & Skincare: Skincare, kosmetik, body care, hair care, personal care.</option>
-                        <option value="Fashion & Apparel">Fashion & Apparel: Pakaian, sepatu, aksesoris, brand lokal, retail.</option>
-                    </optgroup>
-                    <optgroup label="Digital & Platform Services">
-                        <option value="E-Commerce & Online Retail">E-Commerce & Online Retail: Marketplace, toko online, brand berbasis platform digital.</option>
-                        <option value="Logistics & Delivery Service">Logistics & Delivery Service: Jasa pengiriman, ekspedisi, last-mile delivery.</option>
-                        <option value="Software & SaaS (Digital Product)">Software & SaaS (Digital Product): Aplikasi, software berlangganan, platform B2B/B2C.</option>
-                        <option value="Fintech (Consumer Finance)">Fintech (Consumer Finance): Dompet digital, paylater, pinjaman, aplikasi keuangan.</option>
-                    </optgroup>
-                    <optgroup label="Experience & Service">
-                        <option value="Travel & Hospitality">Travel & Hospitality: Hotel, villa, travel agent, wisata, penginapan.</option>
-                        <option value="Event, Concert & Entertainment">Event, Concert & Entertainment: Konser, event organizer, hiburan, festival.</option>
-                        <option value="Wedding Services">Wedding Services: WO, dekorasi, venue, catering, dokumentasi pernikahan.</option>
-                    </optgroup>
-                    <optgroup label="Automotive & Mobility">
-                        <option value="Automotive">Automotive: Mobil, motor, bengkel, aksesoris, layanan otomotif.</option>
-                    </optgroup>
-                    <optgroup label="Property, Industrial & Energy">
-                        <option value="Real Estate & Property">Real Estate & Property: Rumah, apartemen, kos, properti komersial.</option>
-                        <option value="Construction & Engineering">Construction & Engineering: Kontraktor, jasa bangun, engineering, proyek infrastruktur.</option>
-                        <option value="Manufacturing & Industrial Product">Manufacturing & Industrial Product: Produk pabrik, mesin, alat industri, B2B manufacturing.</option>
-                        <option value="Energy & Renewable Utility">Energy & Renewable Utility: Energi, listrik, solar panel, energi terbarukan.</option>
-                    </optgroup>
-                    <optgroup label="Professional & Institutional">
-                        <option value="Healthcare & Pharmaceutical">Healthcare & Pharmaceutical: Klinik, rumah sakit, obat, suplemen, layanan kesehatan.</option>
-                        <option value="Education & Training">Education & Training: Sekolah, kampus, kursus, lembaga pendidikan.</option>
-                        <option value="Insurance">Insurance: Asuransi jiwa, kesehatan, kendaraan, proteksi finansial.</option>
-                        <option value="Legal Services">Legal Services: Firma hukum, notaris, jasa legal & konsultasi hukum.</option>
-                    </optgroup>
-                    <optgroup label="Creative & Production Support">
-                        <option value="Design Services">Design Services: Jasa desain grafis, branding, logo, materi promosi.</option>
-                        <option value="Printing Services">Printing Services: Percetakan digital, banner, brosur, kemasan, merchandise.</option>
-                    </optgroup>
-                    <option value="Custom">Other Category</option>
+                <label>2. Industri</label>
+                <select id="industry" onchange="toggleOther('industry', 'industryOther')">
+                    <option value="">-- Pilih Industri --</option>
+                    <option value="Makanan & Minuman">1. Makanan & Minuman (snack, minuman, restoran, kafe)</option>
+                    <option value="Kecantikan & Fashion">2. Kecantikan & Fashion (skincare, makeup, baju, aksesoris)</option>
+                    <option value="Produk Rumah Tangga">3. Produk Rumah Tangga (sabun, deterjen, harian)</option>
+                    <option value="Bisnis Digital">4. Bisnis Digital (e-commerce, aplikasi, fintech)</option>
+                    <option value="Travel & Hospitality">5. Travel & Hospitality (hotel, wisata, penginapan)</option>
+                    <option value="Event & Wedding">6. Event & Wedding (konser, EO, WO, dekorasi)</option>
+                    <option value="Otomotif">7. Otomotif (mobil, motor, bengkel)</option>
+                    <option value="Properti & Konstruksi">8. Properti & Konstruksi (rumah, apartemen)</option>
+                    <option value="Kesehatan">9. Kesehatan (klinik, RS, apotek, suplemen)</option>
+                    <option value="Pendidikan">10. Pendidikan (sekolah, kursus, kampus)</option>
+                    <option value="Jasa Profesional">11. Jasa Profesional (logistik, hukum, desain)</option>
+                    <option value="Other">12. Lainnya / Tidak Yakin</option>
                 </select>
-                <input type="text" id="industryCustom" class="custom-input" style="display:none" placeholder="Type industry manually...">
+                <input type="text" id="industryOther" class="custom-input" style="display:none" placeholder="Sebutkan industri Anda...">
             </div>
 
             <div class="form-group">
-                <label>3. Product Name</label>
-                <input type="text" id="productName" placeholder="e.g. Kopi Kenangan Mantan">
-                <textarea id="productDesc" style="margin-top: 15px;" placeholder="Apa keunggulannya? Apa bedanya dengan kompetitor? Berapa harganya?"></textarea>
+                <label>3. Nama produk</label>
+                <input type="text" id="productName" placeholder="Contoh: Kopi Kenangan Mantan">
             </div>
 
             <div class="form-group">
-                <label>4. Campaign Template</label>
-                <select id="campaignTemplate">
-                    <option value="NONE">None (Build from scratch)</option>
-                    <option value="Product Launch">Product Launch (New Market Entry)</option>
-                    <option value="Testimonial">Testimonial (Social Proof & Trust)</option>
-                    <option value="Demo">Product Demo (Feature Showcase)</option>
-                    <option value="Brand Story">Brand Story (Mission & Values)</option>
-                    <option value="Product Awarness">Awareness (Reach & Visibility)</option>
-                    <option value="Social Impact">Social Impact (Community & CSR)</option>
-                    <option value="Comparison">Comparison (Market Superiority)</option>
-                    <option value="Seasonal Promo">Seasonal / Holiday Promo</option>
-                    <option value="Flash Sale">Flash Sale / Limited Offer</option>
-                    <option value="Custom">Custom Campaign...</option>
+                <label>4. Keunggulan Produk (USP)</label>
+                <textarea id="usp" placeholder="Contoh: 'Satu-satunya keripik tanpa minyak goreng, harga hanya 15 ribu.'"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>5. Target audiens (consumer profile)</label>
+                <select id="audience" onchange="toggleOther('audience', 'audienceOther')">
+                    <option value="">-- Pilih Target Audiens --</option>
+                    <option value="Pemburu promo">1. Pemburu promo (sensitif harga, suka diskon)</option>
+                    <option value="Pencari kualitas">2. Pencari kualitas (mau bayar lebih untuk terbaik)</option>
+                    <option value="Butuh solusi">3. Butuh solusi (punya masalah, cari jawaban)</option>
+                    <option value="Anak muda / Gen Z">4. Anak muda / Gen Z (visual-driven)</option>
+                    <option value="Profesional sibuk">5. Profesional sibuk (efisien, to the point)</option>
+                    <option value="Ibu rumah tangga">6. Ibu rumah tangga (keluarga, praktis)</option>
+                    <option value="Pemilik usaha / UMKM">7. Pemilik usaha / UMKM (bisnis)</option>
+                    <option value="Lainnya / tidak yakin">8. Lainnya / tidak yakin</option>
+                    <option value="Other">9. Tulis sendiri</option>
                 </select>
-                <input type="text" id="campaignCustom" class="custom-input" style="display:none" placeholder="Type campaign name manual...">
+                <input type="text" id="audienceOther" class="custom-input" style="display:none" placeholder="Sebutkan target audiens...">
             </div>
 
             <div class="section-title">B. Content Strategy</div>
             <div class="form-group">
-                <label>5. Key Message / Angel Iklan</label>
-                <textarea id="topic" placeholder="Contoh: Kopi ini bikin melek tanpa bikin kembung (bukan sekadar 'Kopi enak')"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>6. Content Format</label>
-                <select id="format">
-                    <option value="Undecided">⚠️ Belum kepikiran (Skip Output)</option>
-                    
-                    <optgroup label="Universal Commercial Styles">
-                        <option value="UGC (User Generated Content)">UGC Style (Creator-led)</option>
-                        <option value="TVC (Television Commercial)">TVC Style (Premium Narrative)</option>
-                        <option value="Cinematic Brand Film">Cinematic Brand Story</option>
-                        <option value="Direct Response / Hard Sell">Hard Sell (Promotion Focus)</option>
-                    </optgroup>
-                
-                    <optgroup label="F&B / FMCG (Food & Consumer Goods)">
-                        <option value="Tabletop / Macro Food Shots">Tabletop (Macro Food Shots)</option>
-                        <option value="Cooking / Preparation Tutorial">Cooking & Recipe Tutorial</option>
-                        <option value="Mukbang / Taste Test">Mukbang / Genuine Reaction</option>
-                    </optgroup>
-                
-                    <optgroup label="Beauty, Fashion & Lifestyle">
-                        <option value="GRWM (Get Ready With Me)">GRWM / Routine Style</option>
-                        <option value="Fashion Lookbook / Runway">Fashion Lookbook / Aesthetic Walk</option>
-                        <option value="Product Apply / Texture Shot">Skin-Test / Texture Closeup</option>
-                    </optgroup>
-                
-                    <optgroup label="Tech, SaaS & Professional">
-                        <option value="App / Interface Walkthrough">App/Web Interface Walkthrough</option>
-                        <option value="Screencast Explainer">Screencast / Dashboard Demo</option>
-                        <option value="Whiteboard / Isometric Animation">Whiteboard / Isometric Animation</option>
-                    </optgroup>
-                
-                    <optgroup label="Automotive & Real Estate">
-                        <option value="POV Driving / Walkthrough">POV Driving / Property Walkthrough</option>
-                        <option value="Exterior / Interior Cinematic">Exterior / Interior Cinematic Tour</option>
-                        <option value="Virtual Tour Guide">Host-Led Virtual Tour</option>
-                    </optgroup>
-                
-                    <optgroup label="Performance & Retail">
-                        <option value="Comparison Ad (Side-by-Side)">Comparison (Side-by-Side)</option>
-                        <option value="Unboxing & First Impression">Unboxing & First Impression</option>
-                        <option value="Testimonial Montage">Testimonial Montage (Social Proof)</option>
-                        <option value="Street Interview (Vox Pop)">Vox Pop / Street Interview</option>
-                    </optgroup>
-                
-                    <optgroup label="Others">
-                        <option value="3D Product Reveal / CGI">3D Product Reveal / CGI</option>
-                        <option value="Audio / Radio Ad">Audio Only (Radio/Spotify Ad)</option>
-                        <option value="Custom">Custom Format Ad...</option>
-                    </optgroup>
-                </select>
-                <input type="text" id="formatCustom" class="custom-input" style="display:none" placeholder="Type format manually...">
-                
+                <label>6. Tujuan iklan (campaign goal)</label>
                 <div class="option-group">
-                    <span class="option-label">Gaya Visual (Vibe):</span>
-                    <label class="check-item"><input type="checkbox" name="visualMode" value="Literal"> NATURAL 
-                    (Dokumenter, Vlog, Keseharian, Apa adanya)</label>
-                    <label class="check-item"><input type="checkbox" name="visualMode" value="Exaggerated"> DRAMATIS (Visual "wah", iklan TV, Intens)</label>
-                    <label class="check-item"><input type="checkbox" name="visualMode" value="Absurd"> FANTASI (Imajinatif, Mustahil, Surealis, Efek magis)</label>
-                </div>
-
-                <div class="option-group">
-                    <span class="option-label">Gaya Bicara (Voice):</span>
-                    <label class="check-item"><input type="checkbox" name="narrativeMode" value="Literal"> JELAS
-                    (Lugas, Informatif, Serius)</label>
-                    <label class="check-item"><input type="checkbox" name="narrativeMode" value="Exaggerated"> SANTAI (Fun, Ringan, Bercanda, Bahasa teman)</label>
-                    <label class="check-item"><input type="checkbox" name="narrativeMode" value="Absurd"> NYELENEH 
-                    (Aneh, Lucu, Unik)</label>
-                </div>
-
-                <div class="option-group">
-                    <span class="option-label">Larangan visual (Optional):</span>
-                    <label class="check-item"><input type="checkbox" name="visualBan" value="Wajah 'AI' / Terlalu Sempurna (Plastik)"> Wajah terlalu cantik / Model</label>
-                    <label class="check-item"><input type="checkbox" name="visualBan" value="Terlalu sinematik"> Terlalu Sinematik</label>
-                    <label class="check-item"><input type="checkbox" name="visualBan" value="Terlalu kartun"> Terlalu Kartun</label>
-                    <input type="text" id="visualBanCustom" placeholder="e.g. 'Jangan ada warna merah'">
+                    <label class="check-item"><input type="radio" name="goal" value="Launch produk baru"> 1. Launch produk / layanan baru</label>
+                    <label class="check-item"><input type="radio" name="goal" value="Perkenalan brand"> 2. Perkenalan brand</label>
+                    <label class="check-item"><input type="radio" name="goal" value="Promosi & penjualan"> 3. Promosi & penjualan</label>
+                    <label class="check-item"><input type="radio" name="goal" value="Campaign musiman"> 4. Campaign musiman / event</label>
+                    <label class="check-item"><input type="radio" name="goal" value="Demo & edukasi"> 5. Demo & edukasi produk</label>
+                    <label class="check-item"><input type="radio" name="goal" value="Testimoni & bukti sosial"> 6. Testimoni & bukti sosial</label>
+                    <label class="check-item"><input type="radio" name="goal" value="Eksperimen konten"> 7. Eksperimen / test konten</label>
+                    <label class="check-item"><input type="radio" name="goal" value="Optimasi otomatis"> 8. Optimasi otomatis</label>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>7. Duration</label>
-                <select id="duration">
-                    <option value="8s" selected>8s (Status Whatsapp)</option>
-                    <option value="15s" selected>15s (Story / Micro Ad)</option>
-                    <option value="30s">30s (TikTok / Reels / Shorts)</option>
-                    <option value="1m">1m (Standard Social Ad)</option>
-                    <option value="90s">90s (In-depth Promo)</option>
-            <!--        <option value="3m">3m (Brand Film / YouTube)</option>
-                    <option value="5m">5m (Product Deep Dive)</option>
-                    <option value="8m">8m (YouTube Standard)</option>
-                    <option value="10m">10m (Deep Narrative)</option>
-                    <option value="15m+">15m+ (Documentary Style)</option>-->
-                    <option value="Custom">Custom Duration...</option>
-                </select>
-                <input type="text" id="durationCustom" class="custom-input" style="display:none" placeholder="Isi durasi manual...">
-                <div class="option-group">
-                    <label class="check-item"><input type="radio" name="aspectRatio" value="Vertical"> Vertical (9:16)</label>
-                    <label class="check-item"><input type="radio" name="aspectRatio" value="Horizontal"> Horizontal (16:9)</label>
-                </div>
+                <label>7. Pesan utama iklan</label>
+                <textarea id="mainMessage" placeholder="Contoh: 'Kopi ini bikin melek tanpa bikin kembung'"></textarea>
             </div>
 
             <div class="form-group">
-                <label>8. Target Audience (Consumer Profile)</label>
-                <select id="audiencePreset">
-                    <option value="">-- Pilih Profil Konsumen --</option>
-                    <option value="Impulse Buyers (Pengejar diskon & promo instan)">Impulse Buyers (Promo Hunter)</option>
-                    <option value="High-End Seekers (Mencari kualitas & status sosial)">High-End Seekers (Luxury/Quality)</option>
-                    <option value="Solution Seekers (Orang dengan masalah spesifik)">Solution Seekers (Butuh Solusi)</option>
-                    <option value="Gen Z / Youth (Trend-conscious & internet native)">Gen Z / Youth (Visual-driven)</option>
-                    <option value="Busy Professionals (Mencari efisiensi & waktu)">Busy Professionals (Efficiency)</option>
-                    <option value="Skeptical Researchers (Butuh bukti data & review)">Skeptical Researchers (Data-driven)</option>
-                    <option value="Ibu Rumah Tangga (Penentu belanja keluarga)">Ibu Rumah Tangga (Family Focus)</option>
-                    <option value="Small Biz Owners/UMKM (Mencari pertumbuhan bisnis)">Small Biz Owners / UMKM</option>
-                    <option value="Custom">Custom Audience...</option>
-                </select>
-                <input type="text" id="audienceCustom" class="custom-input" style="display:none" placeholder="Type audience manually...">
-            </div>
-
-            <div class="form-group">
-                <label>9. Call to Action (CTA)</label>
-                <input type="text" id="cta" placeholder="e.g. 'Klik link di bio', 'Beli sekarang'...">
-            </div>
-
-            <div class="form-group">
-                <label>10. Language</label>
+                <label>8. Bahasa</label>
                 <select id="language">
-                    <option value="Indonesia" selected>Indonesia</option>
-                    <option value="English">English</option>
-                    <option value="Mix (Indo-Eng)">Mix (Indo-Eng)</option>
+                    <option value="Indonesia">1. Indonesia</option>
+                    <option value="Inggris">2. Inggris</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label>9. Aspek rasio</label>
+                <select id="aspectRatio">
+                    <option value="Portrait / Vertikal (9:16)">1. Portrait / Vertikal (9:16)</option>
+                    <option value="Landscape / Horizontal (16:9)">2. Landscape / Horizontal (16:9)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>10. Format konten iklan</label>
+                <div class="option-group">
+                    <label class="check-item"><input type="radio" name="format" value="Belum ditentukan / bebas"> 1. Belum ditentukan / bebas</label>
+                    <label class="check-item"><input type="radio" name="format" value="UGC / creator style"> 2. UGC / creator style</label>
+                    <label class="check-item"><input type="radio" name="format" value="Cinematic / brand film"> 3. Cinematic / brand film</label>
+                    <label class="check-item"><input type="radio" name="format" value="Hard sell / promo"> 4. Hard sell / promo</label>
+                    <label class="check-item"><input type="radio" name="format" value="Demo / tutorial"> 5. Demo / tutorial</label>
+                    <label class="check-item"><input type="radio" name="format" value="Review / testimoni"> 6. Review / testimoni</label>
+                    <label class="check-item"><input type="radio" name="format" value="Comparison"> 7. Comparison (perbandingan)</label>
+                    <label class="check-item"><input type="radio" name="format" value="Walkthrough / tour"> 8. Walkthrough / tour</label>
+                    <label class="check-item"><input type="radio" name="format" value="Animasi / CGI"> 9. Animasi / CGI / visual</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>11. Gaya visual</label>
+                <select id="visualStyle">
+                    <option value="Natural">1. Natural (dokumenter, vlog, keseharian)</option>
+                    <option value="Dramatis">2. Dramatis (visual 'wah', iklan TV)</option>
+                    <option value="Fantasi">3. Fantasi (imajinatif, surealis)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>12. Gaya bicara</label>
+                <select id="voiceTone">
+                    <option value="Jelas (Lugas, informatif, serius)">1. Jelas (lugas, informatif, serius)</option>
+                    <option value="Santai (Fun, ringan, bahasa teman)">2. Santai (fun, ringan, bahasa teman)</option>
+                    <option value="Nyeleneh (Unik, lucu, tidak biasa)">3. Nyeleneh (unik, lucu, tidak biasa)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>13. Call to Action (CTA)</label>
+                <input type="text" id="cta" placeholder="Contoh: 'Klik link di bio', 'Beli sekarang'">
             </div>
 
             <div class="section-title">C. Asset & Policy</div>
             
             <div class="form-group">
-                <label>11. Asset Upload (Optional)</label>
-                <div style="margin-top:10px">
-                    <label style="font-size:12px; font-weight:500">Product Photo:</label>
-                    <div class="file-wrapper">
-                        <input type="file" id="productPhoto">
-                        <button type="button" class="clear-btn" id="clearProd">✕</button>
-                    </div>
-                </div>
-                <div style="margin-top:10px">
-                    <label style="font-size:12px; font-weight:500">Talent/Model Photo:</label>
-                    <div class="file-wrapper">
-                        <input type="file" id="talentPhoto">
-                        <button type="button" class="clear-btn" id="clearTalent">✕</button>
-                    </div>
+                <label>14. Unggah foto</label>
+                <span class="helper">Visual produk atau kemasan utama.</span>
+                <input type="file" id="fileUpload">
+                <div class="option-group check-row" style="margin-top:10px">
+                    <label class="check-item"><input type="checkbox" id="checkProduk"> Produk</label>
+                    <label class="check-item"><input type="checkbox" id="checkTalent"> Talent</label>
+                    <label class="check-item"><input type="checkbox" id="checkLogo"> Logo</label>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>12. Brand Guidelines / Aturan Wajib (Optional)</label>
-                <textarea id="mandatories" placeholder="e.g. Logo kanan bawah, sebutkan tagline..."></textarea>
+                <label>15. Brand guidelines (opsional)</label>
+                <textarea id="guidelines" placeholder="Contoh: 'Wajib tampilkan logo di akhir'"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>16. Narasi (opsional)</label>
+                <textarea id="narasi" placeholder="Paste di sini..."></textarea>
             </div>
 
         </div>
 
         <div class="resizer" id="resizer"></div>
 
-        <!-- RIGHT OUTPUT -->
         <div class="output-section">
             <div class="view-toggle">
                 <button class="view-btn active" onclick="switchView('brief')">Preview</button>
-                <button class="view-btn" onclick="switchView('prompt')">Check out</button>
+                <button class="view-btn" onclick="switchView('prompt')">Blueprint</button>
             </div>
 
             <div class="output-box">
@@ -398,295 +289,111 @@
             </div>
 
             <div class="action-bar">
-                <button class="btn btn-primary" id="smartCopyBtn" onclick="smartCopy()">
-                    <span>Order</span>
+                <button class="btn btn-primary" onclick="copyText()">
+                    <span>Copy</span>
                 </button>
             </div>
         </div>
     </div>
 
     <script>
-        const inputs = {
-            brandName: document.getElementById('brandName'),
-            industry: document.getElementById('industry'), industryCustom: document.getElementById('industryCustom'),
-            productName: document.getElementById('productName'), productDesc: document.getElementById('productDesc'),
-            campaignTemplate: document.getElementById('campaignTemplate'), campaignCustom: document.getElementById('campaignCustom'),
-            topic: document.getElementById('topic'), 
-            format: document.getElementById('format'), formatCustom: document.getElementById('formatCustom'),
-            duration: document.getElementById('duration'), durationCustom: document.getElementById('durationCustom'),
-            audiencePreset: document.getElementById('audiencePreset'), audienceCustom: document.getElementById('audienceCustom'),
-            cta: document.getElementById('cta'), language: document.getElementById('language'),
-            mandatories: document.getElementById('mandatories'),
-            productPhoto: document.getElementById('productPhoto'),
-            talentPhoto: document.getElementById('talentPhoto'),
-            visualBanCustom: document.getElementById('visualBanCustom')
-        };
+        function toggleOther(selectId, otherId) {
+            const select = document.getElementById(selectId);
+            const other = document.getElementById(otherId);
+            if(select && other) {
+                other.style.display = select.value === 'Other' ? 'block' : 'none';
+            }
+            render();
+        }
 
         function getData() {
-            const getS = (sel, cust) => (sel.value === 'Custom' && cust) ? (cust.value || '') : sel.value;
-            
-            // Radio: Visual Style
-            const vStyleEl = document.querySelector('input[name="visualMode"]:checked');
-            const vStyle = vStyleEl ? vStyleEl.value : '';
-
-            // Radio: Narrative Style
-            const nStyleEl = document.querySelector('input[name="narrativeMode"]:checked');
-            const nStyle = nStyleEl ? nStyleEl.value : '';
-
-            // Checkbox: Visual Ban
-            const vBanEls = document.querySelectorAll('input[name="visualBan"]:checked');
-            let vBanList = Array.from(vBanEls).map(cb => cb.value);
-            
-            // Add Custom Visual Ban if exists
-            if (inputs.visualBanCustom.value) {
-                vBanList.push(inputs.visualBanCustom.value);
+            const getV = (id) => document.getElementById(id).value;
+            const getC = (id) => document.getElementById(id).checked ? 'Yes' : 'No';
+            const getRadio = (name) => {
+                const el = document.querySelector(`input[name="${name}"]:checked`);
+                return el ? el.value : '';
             }
-            const vBan = vBanList.join(', ');
-
-            const brandVal = inputs.brandName.value || 'Brand';
-            const audienceVal = getS(inputs.audiencePreset, inputs.audienceCustom) || 'General Audience';
-            const langVal = inputs.language.value || 'Indonesia';
-
-            let rawDur = getS(inputs.duration, inputs.durationCustom);
-            let ratio = '';
-            
-            const ratioEl = document.querySelector('input[name="aspectRatio"]:checked');
-            if (ratioEl && ratioEl.value === 'Vertical') ratio = ' (9:16)';
-            else if (ratioEl && ratioEl.value === 'Horizontal') ratio = ' (16:9)';
-
-            const durationVal = rawDur + ratio;
-
-            let assetProd = inputs.productPhoto.files.length > 0 ? '[Prod1]' : 'No';
-            let assetTalent = inputs.talentPhoto.files.length > 0 ? '[C1]' : 'No';
-
-            let formatVal = getS(inputs.format, inputs.formatCustom);
-            
-            // Logic: Visual/Narrative styles NOT included in formatVal (so they don't show in Preview).
-            // Logic: Bans ARE included in formatVal.
-            //if (vBan) formatVal += ` | No: ${vBan} `;
-
             return {
-                brand: brandVal,
-                industry: getS(inputs.industry, inputs.industryCustom) || '',
-                product: inputs.productName.value || '',
-                details: inputs.productDesc.value || '',
-                campaign: getS(inputs.campaignTemplate, inputs.campaignCustom) || '',
-                angle: inputs.topic.value || '',
-                format: formatVal,
-                duration: durationVal,
-                audience: audienceVal,
-                cta: inputs.cta.value || '',
-                lang: langVal,
-                mandatories: inputs.mandatories.value,
-                assetProd: assetProd,
-                assetTalent: assetTalent,
-                vStyle: vStyle,
-                vNar: nStyle,
-                vBan: vBan
+                "Nama Brand": getV('brandName'),
+                "Industri": getV('industry') === 'Other' ? getV('industryOther') : getV('industry'),
+                "Nama Produk": getV('productName'),
+                "USP": getV('usp'),
+                "Target Audiens": getV('audience') === 'Other' ? getV('audienceOther') : getV('audience'),
+                "Tujuan Iklan": getRadio('goal'),
+                "Pesan Utama": getV('mainMessage'),
+                "Bahasa": getV('language') || "Indonesia",
+                "Aspek Rasio": getV('aspectRatio') || "Portrait / Vertikal (9:16)",
+                "Format Konten": getRadio('format'),
+                "Gaya Visual": getV('visualStyle') || "Natural",
+                "Gaya Bicara": getV('voiceTone') || "Jelas (Lugas, informatif, serius)",
+                "CTA": getV('cta'),
+                "Unggah foto": {
+                    produk: getC('checkProduk'),
+                    talent: getC('checkTalent'),
+                    logo: getC('checkLogo')
+                },
+                "Guidelines": getV('guidelines'),
+                "Narasi": getV('narasi')
             };
         }
 
         function render() {
-            const d = getData();
-            // Cek apakah user sudah mengisi apapun di luar default
-            const hasInput = (
-                inputs.brandName.value !== '' || 
-                inputs.industry.value !== '' || 
-                inputs.productName.value !== '' || 
-                inputs.productDesc.value !== '' || 
-                inputs.campaignTemplate.value !== 'NONE' || 
-                inputs.topic.value !== '' || 
-                inputs.format.value !== 'Undecided' || 
-                d.vStyle !== '' ||
-                d.vNar !== '' ||
-                d.vBan !== '' ||
-                inputs.duration.value !== '15s' || 
-                inputs.audiencePreset.value !== '' || 
-                inputs.cta.value !== '' || 
-                inputs.mandatories.value !== ''
-            );
-
+            const data = getData();
             let html = '';
-            if (!hasInput) {
-                // TAMPILAN AWAL
-                html += `<div class="brief-item"><div class="brief-key">1. Brand</div><div class="brief-val">e.g. Unilever, Bintang Toejoeh </div></div>`;
-                html += `<div class="brief-item"><div class="brief-key">2. Duration</div><div class="brief-val">15s (9:16)</div></div>`;
-                html += `<div class="brief-item"><div class="brief-key">3. Audience</div><div class="brief-val">General Audience</div></div>`;
-                html += `<div class="brief-item"><div class="brief-key">4. Language</div><div class="brief-val">Indonesia</div></div>`;
-            } else {
-                const rawItems = [
-                    { label: 'Brand', val: d.brand },
-                    { label: 'Industry Category', val: d.industry },
-                    { label: 'Product Name & USP', val: d.product, detail: d.details },
-                    { label: 'Campaign Template', val: d.campaign },
-                    { label: 'Key Message / Angel Iklan', val: d.angle },
-                    { label: 'Content Format', val: d.format },
-                    { label: 'Duration', val: d.duration },
-                    { label: 'Target Audience', val: d.audience },
-                    { label: 'Call to Action', val: d.cta },
-                    { label: 'Language', val: d.lang },
-                    { label: 'Asset Upload', val: `Product Photo: ${d.assetProd}, Talent Photo: ${d.assetTalent}` },
-                    { label: 'Brand Guidelines', val: d.mandatories }
-                ];
+            let raw = "";
+            const coreKeys = ["Bahasa", "Aspek Rasio", "Gaya Visual", "Gaya Bicara", "Unggah foto"];
 
-                const filtered = rawItems.filter(i => {
-                    if(i.label === 'Brand Name' || i.label === 'Target Audience' || i.label === 'Language' || i.label === 'Duration') return true;
-                    if(i.label === 'Asset Upload' && i.val === 'Product Photo: No, Talent Photo: No') return false;
-                    return i.val && i.val !== '' && i.val !== 'NONE' && i.val !== 'Undecided';
-                });
-                
-                filtered.forEach((item, index) => {
-                    const det = item.detail ? `<div class="detail-block">${item.detail}</div>` : '';
-                    html += `<div class="brief-item"><div class="brief-key">${index + 1}. ${item.label}</div><div class="brief-val">${item.val}${det}</div></div>`;
-                });
-            }
+            Object.entries(data).forEach(([key, val]) => {
+                if(val || coreKeys.includes(key)) {
+                    if(key === "Unggah foto") {
+                        const previewStr = `Produk (${val.produk}), Talent (${val.talent}), Logo (${val.logo})`;
+                        html += `<div class="brief-item"><div class="brief-key">${key}</div><div class="brief-val">${previewStr}</div></div>`;
+                        raw += `${key}:\nProduk: ${val.produk}\nTalent: ${val.talent}\nLogo: ${val.logo}\n`;
+                    } else {
+                        html += `<div class="brief-item"><div class="brief-key">${key}</div><div class="brief-val">${val}</div></div>`;
+                        raw += `${key}: ${val}\n`;
+                    }
+                }
+            });
             document.getElementById('briefView').innerHTML = html;
-
-            const allFiltered = [
-                { label: 'Brand', val: d.brand },
-                { label: 'Industry Category', val: d.industry },
-                { label: 'Product Name', val: d.product },
-                { label: 'USP', val: d.details },
-                { label: 'Campaign Template', val: d.campaign },
-                { label: 'Key Message / Angel Iklan', val: d.angle },
-                { label: 'Content Format', val: d.format },
-                { label: 'Duration', val: d.duration },
-                { label: 'Target Audience', val: d.audience },
-                { label: 'Call to Action', val: d.cta },
-                { label: 'Language', val: d.lang },
-                { label: 'Asset Upload', val: `Product: ${d.assetProd}, Talent: ${d.assetTalent}` },
-                { label: 'Brand Mandatories', val: d.mandatories }
-            ].filter(i => i.val && i.val !== '' && i.val !== 'NONE' && i.val !== 'Undecided');
-
-            const blueprint = `
-
-BRIEF
------
-
-${allFiltered.map((i,idx) => `${idx+1}. ${i.label}: ${i.val}`).join('\n')}
-
-
-`.trim();
-            document.getElementById('promptView').textContent = blueprint;
+            document.getElementById('promptView').textContent = raw;
         }
 
-        function smartCopy() {
-            const d = getData();
-            const hasInput = (
-                inputs.brandName.value !== '' || 
-                inputs.industry.value !== '' || 
-                inputs.productName.value !== '' || 
-                inputs.productDesc.value !== '' || 
-                inputs.campaignTemplate.value !== 'NONE' || 
-                inputs.topic.value !== '' || 
-                inputs.format.value !== 'Undecided' || 
-                d.vStyle !== '' ||
-                d.vNar !== '' ||
-                d.vBan !== '' ||
-                inputs.duration.value !== '15s' || 
-                inputs.audiencePreset.value !== '' || 
-                inputs.cta.value !== '' || 
-                inputs.mandatories.value !== ''
-            );
-            
-            let textToCopy = '';
-            if (window.currentView === 'prompt') {
-                textToCopy = document.getElementById('promptView').textContent;
-            } else {
-                if (!hasInput) {
-                    textToCopy = "1. Brand Name\n2. Duration 15s (9:16)\n3. Target Audience General Audience\n4. Language Indonesia";
+        function switchView(mode) {
+            document.getElementById('briefView').style.display = mode === 'brief' ? 'block' : 'none';
+            document.getElementById('promptView').style.display = mode === 'prompt' ? 'block' : 'none';
+            const btns = document.querySelectorAll('.view-btn');
+            btns.forEach(btn => {
+                const btnText = btn.innerText.toLowerCase();
+                if ((mode === 'brief' && btnText === 'preview') || (mode === 'prompt' && btnText === 'blueprint')) {
+                    btn.classList.add('active');
                 } else {
-                    const rawItems = [
-                        { label: 'Brand:', val: d.brand },
-                        { label: 'Industry Category:', val: d.industry },
-                        { label: 'Product Name:', val: d.product },
-                        { label: 'USP:', val: d.details },
-                        { label: 'Campaign Template:', val: d.campaign },
-                        { label: 'Key Message / Angel Iklan:', val: d.angle },
-                        { label: 'Content Format:', val: d.format },
-                        { label: 'Duration:', val: d.duration },
-                        { label: 'Target Audience:', val: d.audience },
-                        { label: 'Call to Action:', val: d.cta },
-                        { label: 'Language:', val: d.lang },
-                        { label: 'Asset Upload:', val: `Product: ${d.assetProd}, Talent: ${d.assetTalent}` },
-                        { label: 'Brand Mandatories:', val: d.mandatories }
-                    ];
-                    const filtered = rawItems.filter(i => {
-                        if(i.label === 'Brand Name' || i.label === 'Target Audience' || i.label === 'Language' || i.label === 'Duration') return true;
-                        if(i.label === 'Asset Upload:' && i.val === 'Product: No, Talent: No') return false;
-                        return i.val && i.val !== '' && i.val !== 'NONE' && i.val !== 'Undecided';
-                    });
-                    textToCopy = filtered.map((i, idx) => `${idx + 1}. ${i.label} ${i.val}`).join('\n');
+                    btn.classList.remove('active');
                 }
-            }
-
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const btn = document.getElementById('smartCopyBtn');
-                btn.innerHTML = '<span>Ordered</span>';
-                setTimeout(() => btn.innerHTML = '<span>Order</span>', 1500);
             });
         }
 
-        function switchView(m) {
-            document.getElementById('briefView').style.display = m === 'brief' ? 'block' : 'none';
-            document.getElementById('promptView').style.display = m === 'prompt' ? 'block' : 'none';
-            document.querySelectorAll('.view-btn').forEach((b, i) => b.classList.toggle('active', (i === 0 && m === 'brief') || (i === 1 && m === 'prompt')));
-            window.currentView = m;
+        function copyText() {
+            const text = document.getElementById('promptView').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.btn-primary span');
+                btn.textContent = "Copied";
+                setTimeout(() => btn.textContent = "Copy", 2000);
+            });
         }
 
-        // TOGGLE CUSTOM INPUTS
-        const toggleMap = {
-            'industry': 'industryCustom',
-            'campaignTemplate': 'campaignCustom',
-            'format': 'formatCustom',
-            'duration': 'durationCustom',
-            'audiencePreset': 'audienceCustom'
-        };
-
-        for (const [selectId, inputId] of Object.entries(toggleMap)) {
-            const select = document.getElementById(selectId);
-            const input = document.getElementById(inputId);
-            if(select && input) {
-                select.addEventListener('change', function() {
-                    input.style.display = this.value === 'Custom' ? 'block' : 'none';
-                });
-            }
-        }
-
-        // FILE HANDLERS
-        ['productPhoto', 'talentPhoto'].forEach(id => {
-            const inp = document.getElementById(id);
-            const btn = (id === 'productPhoto') ? document.getElementById('clearProd') : document.getElementById('clearTalent');
-            inp.onchange = () => { btn.classList.toggle('visible', inp.files.length > 0); render(); };
-            btn.onclick = () => { inp.value = ''; btn.classList.remove('visible'); render(); };
+        document.querySelectorAll('input, select, textarea').forEach(input => {
+            input.addEventListener('input', render);
+            input.addEventListener('change', render);
         });
 
-        // Listeners for Radio/Checkboxes
-        document.addEventListener('change', function(e) {
-            // Logic Checkbox rasa Radio (Mutual Exclusion)
-            if(e.target.name === 'visualMode' || e.target.name === 'narrativeMode') {
-                if(e.target.checked) {
-                    const group = document.querySelectorAll(`input[name="${e.target.name}"]`);
-                    group.forEach(el => {
-                        if(el !== e.target) el.checked = false;
-                    });
-                }
-                render();
-            }
-            // Existing logic
-            else if(e.target.name === 'visualBan' || e.target.name === 'aspectRatio') {
-                render();
-            }
-        });
-
-        Object.values(inputs).forEach(el => { if(el) { el.addEventListener('input', render); el.addEventListener('change', render); }});
-        
         const resizer = document.getElementById('resizer');
         const leftPane = document.getElementById('leftPane');
         resizer.addEventListener('mousedown', e => {
             const move = ev => leftPane.style.width = ev.clientX + 'px';
-            const up = () => { document.removeEventListener('mousemove', move); document.removeEventListener('mouseup', up); };
-            document.addEventListener('mousemove', move); document.addEventListener('mouseup', up);
+            const stop = () => { document.removeEventListener('mousemove', move); document.removeEventListener('mouseup', stop); };
+            document.addEventListener('mousemove', move);
+            document.addEventListener('mouseup', stop);
         });
 
         render();
